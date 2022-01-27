@@ -1,19 +1,13 @@
-# TeamSpeak 3 Client Plugin SDK
+# Teamspeak Meeting Plugin
 
-This is the official helper repository that contains example code and the SDK header files 
-required to create native plugins for the TeamSpeak 3 Client.
+Server members bringing you down, but you're too lazy to kick them all in time? Look no further! With 2 clicks, every member in your channel will be sent back to the lobby!
 
-## Getting Started
+Right-click on any member or channel, and kick them all in preparation of your 4 o'clock meeting in seconds.
 
-It's strongly recommended to build upon the test plugin. Plugins are required to export some 
-special functions, which already exist in the test plugin. Optional functions may be removed 
-if not used. See code comments for details.
+## Installing
 
-For more information, please refer to the following pages:
+Open the latest workflow run [here](https://github.com/kolbyd/meeting-teamspeak-plugin/actions/workflows/msbuild.yml). At the bottom, you should see 2 artifacts (x86 for 32-bit systems, and x64 for 64-bit systems). Download the one that matches your platform.
 
-- [TeamSpeak Community Forums](https://forum.teamspeak.com)
-- [TeamSpeak SDK Downloads](https://www.teamspeak.com/downloads#sdk)
+From there, add the file to your TS3 plugins folder. This can be found at `%AppData\TS3Client\plugins\`. Then, you can run your TeamSpeak Client to enable the plugin (under 'Addons').
 
-## Copyright
-
-Copyright &copy; TeamSpeak Systems GmbH. All rights reserved.
+Woila! Right-click and kick people at ease, with ease-of-mind.
