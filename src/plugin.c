@@ -71,11 +71,27 @@ void kickChannel(uint64 serverConnectionHandlerID, uint64 channelId) {
 
 	if (ts3Functions.getChannelClientList(serverConnectionHandlerID, channelId, &channelClientList) != ERROR_ok) {
 		ts3Functions.logMessage("Error getting channel members.", LogLevel_ERROR, "Meeting Plugin", serverConnectionHandlerID);
+		return;
+	}
+
+	// Remove current user from array
+	anyID clientId;
+	
+	if (ts3Functions.getClientID(serverConnectionHandlerID, &clientId) != ERROR_ok) {
+		ts3Functions.logMessage("Error getting client ID.", LogLevel_ERROR, "Meeting Plugin", serverConnectionHandlerID);
+		return;
 	}
 
 	// Attempt to kick clients from channel
-	ts3Functions.requestClientsKickFromChannel(serverConnectionHandlerID, channelClientList, "Meeting!", NULL);
+	for (int i = 0; channelClientList[i]; ++i) {
+		if (channelClientList[i] == clientId) {
+			continue;
+		}
 
+		ts3Functions.requestClientKickFromChannel(serverConnectionHandlerID, channelClientList[i], "Meeting!", NULL);
+	}
+
+	// Free memory
 	ts3Functions.freeMemory(channelClientList);
 }
 
@@ -103,7 +119,7 @@ const char* ts3plugin_name() {
 
 /* Plugin version */
 const char* ts3plugin_version() {
-    return "0.1-beta";
+    return "0.2-beta";
 }
 
 /* Plugin API version. Must be the same as the clients API major version, else the plugin fails to load. */
